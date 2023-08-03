@@ -10,8 +10,9 @@ const root = ReactDOM.createRoot(el);
 
 // 4) Create a component
 const App = () => {
-  const msg = {};
-  return <h1>Hello World! {msg}</h1>;
+  const msg1 = "Naviiiii";
+  const msg2 = "Surekaaa";
+  return <input type={"number"} min={4} />;
 };
 
 // 5) Show the component on the screen
