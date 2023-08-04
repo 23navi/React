@@ -14,7 +14,6 @@ function App() {
   };
   return (
     <div>
-      <h1>Search Images</h1>
       <SearchBar onSubmitCallback={handleSubmit} />
       <ImageList images={images} />
     </div>

@@ -1,3 +1,4 @@
+import "./css/ImageShow.css";
 function ImageShow({ image }) {
   console.log(image);
   return (
