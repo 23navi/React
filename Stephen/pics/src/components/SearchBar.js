@@ -1,3 +1,4 @@
+import { useState } from "react";
 function SearchBar({ onSubmitCallback }) {
   //   const handleClick = () => {
   //     // onSubmitCallback() from the parent component expects a search term.
@@ -5,16 +6,21 @@ function SearchBar({ onSubmitCallback }) {
   //     onSubmitCallback("cars");
   //   };
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("Form is submited");
+    onSubmitCallback(searchTerm);
   };
   return (
     <>
       <h1>Hello SearchBar</h1>
       <form onSubmit={handleFormSubmit}>
-        <input />
-        {/* <input /> */}
+        <input value={searchTerm} onChange={handleInputChange} />
       </form>
 
       {/* <button onClick={handleClick}>Search</button> */}
