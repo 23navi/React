@@ -1,5 +1,10 @@
-import { useState } from "react";
-function BookCreate({ createBookCallback }) {
+import { useState, useContext } from "react";
+
+import BookContext from "../context/books";
+
+function BookCreate() {
+  const { createBookCallback } = useContext(BookContext);
+
   const [title, setTitle] = useState("");
 
   const handleInputChange = (event) => {

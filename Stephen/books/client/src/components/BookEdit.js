@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import BookContext from "../context/books";
 
-function BookEdit({ book, editBookByIdCallback, setBookShow }) {
+function BookEdit({ setBookShow }) {
+  const { book, editBookByIdCallback } = useContext(BookContext);
   const [title, setTitle] = useState(book.title);
 
   const handleInputChange = (event) => {

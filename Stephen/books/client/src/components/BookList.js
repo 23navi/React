@@ -3,7 +3,9 @@ import BookShow from "./BookShow";
 
 import BooksContext from "../context/books";
 
-function BookList({ books, deleteBookByIdCallback, editBookByIdCallback }) {
+function BookList() {
+  const { deleteBookByIdCallback, editBookByIdCallback, books } =
+    useContext(BooksContext);
   // const data = useContext(BooksContext);
   // console.log("Book context data: ", data);
   const renderedBooks = books.map((book) => (
