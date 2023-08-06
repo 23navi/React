@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useEffect } from "react";
+
+import axios from "axios";
 
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
@@ -6,13 +9,33 @@ import BookList from "./components/BookList";
 function App() {
   const [books, setBooks] = useState([]);
 
-  const createBookCallback = (title) => {
-    console.log("BookCreate returned: " + title);
-    // update the books array with the new title received.
-    setBooks([
-      ...books, // adding new book to the end of array
-      { id: Math.round(Math.random() * 10000), title: title },
-    ]);
+  const fetchBooks = async () => {
+    const response = await axios.get("http://localhost:3001/books");
+    setBooks(response.data);
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const createBookCallback = async (title) => {
+    // Axios
+
+    const response = await axios.post("http://localhost:3001/books", {
+      title: title,
+    });
+    if (response.status > 300) {
+      console.log("Error: " + response.status);
+      return;
+    }
+    setBooks([...books, response.data]);
+
+    // console.log("BookCreate returned: " + title);
+    // // update the books array with the new title received.
+    // setBooks([
+    //   ...books, // adding new book to the end of array
+    //   { id: Math.round(Math.random() * 10000), title: title },
+    // ]);
   };
 
   const deleteBookByIdCallback = (id) => {
