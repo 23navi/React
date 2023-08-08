@@ -14,6 +14,16 @@ const BooksContext = createContext();
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
 
+  const a = 10;
+
+  const [someState, setSomeState] = useState(0);
+  const [someOtherState, setSomeOtherState] = useState(0);
+
+  const stateFunction = () => {
+    console.log(someState);
+    setSomeState(someState + 1);
+  };
+
   const fetchBooks = async () => {
     const response = await axios.get("http://localhost:3001/books");
     setBooks(response.data);
@@ -67,6 +77,10 @@ function Provider({ children }) {
     deleteBookByIdCallback,
     editBookByIdCallback,
     createBookCallback,
+    a,
+    someState,
+    stateFunction,
+    someOtherState,
   };
   return (
     <BooksContext.Provider value={valuesToShare}>
