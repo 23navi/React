@@ -6,10 +6,21 @@ import BookList from "./components/BookList";
 import BookContext from "./context/books";
 
 function App() {
-  const { fetchBooks } = useContext(BookContext);
+  const {
+    a,
+    someState,
+    someOtherState,
+
+    stateFunction,
+  } = useContext(BookContext);
+
+  // useEffect(() => {
+  //   fetchBooks();
+  // }, []);
+
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    stateFunction();
+  }, [someOtherState]);
 
   return (
     <div className="app">
