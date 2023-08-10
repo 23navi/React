@@ -6,13 +6,11 @@ import BookList from "./components/BookList";
 import BookContext from "./context/books";
 
 function App() {
-
-  
+  const { fetchBooks } = useContext(BookContext);
 
   useEffect(() => {
-    // fetchBooks();
-  }, []);
-
+    fetchBooks();
+  });
 
   return (
     <div className="app">
