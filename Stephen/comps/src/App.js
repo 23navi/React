@@ -1,47 +1,15 @@
-import { GoBell, GoDependabot, GoDatabase } from "react-icons/go";
-import Button from "./components/Button";
+import Accordion from "./components/Accordion";
 
 function App() {
-  const handleClick = () => {
-    console.log("Clicked!");
-  };
-
+  const items = [
+    { key: "132424", label: "First", content: "First Content" },
+    { key: "1332948", label: "Second", content: "Second Content" },
+    { key: "12304723", label: "Third", content: "Third Content" },
+    { key: "1293742", label: "Forth", content: "Forth Content" },
+  ];
   return (
-    <div>
-      <div>
-        <Button
-          secondary
-          outline
-          rounded
-          className="mb-5"
-          onClick={handleClick}
-        >
-          <GoBell />
-          Click me!!
-        </Button>
-      </div>
-      <div>
-        <Button danger outline onMouseEnter={handleClick}>
-          <GoDependabot />
-          Buy Now!
-        </Button>
-      </div>
-      <div>
-        <Button warning onMouseLeave={handleClick}>
-          <GoDatabase />
-          See Deal!
-        </Button>
-      </div>
-      <div>
-        <Button secondary outline>
-          Hide Ads!
-        </Button>
-      </div>
-      <div>
-        <Button primary rounded>
-          Something!
-        </Button>
-      </div>
+    <div className="App">
+      <Accordion items={items} />
     </div>
   );
 }
