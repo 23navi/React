@@ -1,15 +1,15 @@
-import Accordion from "./components/Accordion";
+import Dropdown from "./components/Dropdown";
 
 function App() {
-  const items = [
-    { key: "132424", label: "First", content: "First Content" },
-    { key: "1332948", label: "Second", content: "Second Content" },
-    { key: "12304723", label: "Third", content: "Third Content" },
-    { key: "1293742", label: "Forth", content: "Forth Content" },
+  const options = [
+    { key: "132424", label: "First", value: "First value" },
+    { key: "1332948", label: "Second", value: "Second value" },
+    { key: "12304723", label: "Third", value: "Third value" },
+    { key: "1293742", label: "Forth", value: "Forth value" },
   ];
   return (
     <div className="App">
-      <Accordion items={items} />
+      <Dropdown options={options} />
     </div>
   );
 }
