@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+
+import Panel from "./Panel";
 function Dropdown({ children, options, value, onClick }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,21 +29,15 @@ function Dropdown({ children, options, value, onClick }) {
 
   return (
     <div className="w-48 relative">
-      <div
-        className={twMerge(
-          "flex justify-between items-center cursor-pointer border rounded p-3 shadow bg-white w-full"
-        )}
+      <Panel
+        className={twMerge("flex justify-between items-center cursor-pointer")}
         onClick={() => {
           handleClick();
         }}
       >
         {value?.label || "Select....."}
-      </div>
-      {isOpen && (
-        <div className="absolute top-full border rounded p-3 shadow bg-white w-full">
-          {renderedOptions}
-        </div>
-      )}
+      </Panel>
+      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
     </div>
   );
 }
