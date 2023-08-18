@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 import Panel from "./Panel";
 function Dropdown({ children, options, value, onClick }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const divEl = useRef();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (divEl.current && !divEl.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handler, true);
+
+    // cleanup when this component is not on screen... We don't want event listeners to be added to the entire page
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
 
   const handleSelect = (option) => {
     setIsOpen(false);
@@ -28,7 +44,7 @@ function Dropdown({ children, options, value, onClick }) {
   }
 
   return (
-    <div className="w-48 relative">
+    <div ref={divEl} className="w-48 relative">
       <Panel
         className={twMerge("flex justify-between items-center cursor-pointer")}
         onClick={() => {
