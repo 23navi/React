@@ -1,12 +1,16 @@
-function Link({ to }) {
+import classNames from "classnames";
+import useNavigationContext from "../hooks/use-navigation";
+
+export default function Link({ to, children }) {
+  const { navigate } = useNavigationContext();
   const handleClick = (event) => {
-    console.log(window.location.pathname);
+    event.preventDefault();
+    navigate(to);
   };
+  const classnames = classNames("text-blue-500");
   return (
-    <a onClick={handleClick} href={to}>
-      Click
+    <a className={classnames} href={to} onClick={handleClick}>
+      {children}
     </a>
   );
 }
-
-export { Link };
