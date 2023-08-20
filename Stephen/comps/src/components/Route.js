@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import NavigationContext from "../context/NavigationContext";
+import useNavigationContext from "../hooks/use-navigation";
 
 function Route({ children, path }) {
-  const { currentPath } = useContext(NavigationContext);
+  const { currentPath } = useNavigationContext();
   if (currentPath === path) {
     return children;
   }

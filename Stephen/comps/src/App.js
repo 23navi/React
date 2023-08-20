@@ -8,16 +8,16 @@ function App() {
     <div className="App">
       <h1>Hello World</h1>
       <div>
-        <Link to="/accordion">
-          <a>Accordion</a>
-        </Link>
-        <Link to="/dropdown">
-          <a>Dropdown</a>
-        </Link>
+        <Link to="/accordion">Accordion</Link>
+        <Link to="/dropdown">Dropdown</Link>
       </div>
       <div>
-        <Route path="/accordion" component={AccordionPage} />
-        <Route path="/dropdown" component={DropdownPage} />
+        <Route path="/accordion">
+          <AccordionPage />
+        </Route>
+        <Route path="/dropdown">
+          <DropdownPage />
+        </Route>
       </div>
     </div>
   );
