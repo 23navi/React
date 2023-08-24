@@ -8,7 +8,7 @@ export default function TablePage() {
   ];
   return (
     <div>
-      <Table data={data}></Table>
+      <Table className="" data={data}></Table>
     </div>
   );
 }
