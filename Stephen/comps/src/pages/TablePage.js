@@ -27,9 +27,13 @@ export default function TablePage() {
       },
     },
   ];
+
+  const keyFn = (data) => {
+    return data.name;
+  };
   return (
     <div>
-      <Table className="" data={data} config={config}></Table>
+      <Table className="" data={data} config={config} keyFn={keyFn}></Table>
     </div>
   );
 }
