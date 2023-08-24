@@ -3,7 +3,9 @@ export default function Table({ children, data }) {
     return (
       <tr className="border-b" key={row.name}>
         <td className="p-3">{row.name}</td>
-        <td className="p-3">{row.color}</td>
+        <td className="p-3">
+          <div className={`p-3 m-2 ${row.color}`}></div>
+        </td>
         <td className="p-3">{row.score}</td>
       </tr>
     );

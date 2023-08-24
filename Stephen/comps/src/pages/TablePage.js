@@ -1,10 +1,10 @@
 import Table from "../components/Table.js";
 export default function TablePage() {
   const data = [
-    { name: "Apple", color: "red", score: 15 },
-    { name: "Orange", color: "orange", score: 20 },
-    { name: "Banana", color: "yellow", score: 55 },
-    { name: "Cherry", color: "pink", score: 65 },
+    { name: "Apple", color: "bg-red-400", score: 15 },
+    { name: "Orange", color: "bg-orange-400", score: 20 },
+    { name: "Banana", color: "bg-yellow-400", score: 55 },
+    { name: "Cherry", color: "bg-pink-400", score: 65 },
   ];
   return (
     <div>
