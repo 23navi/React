@@ -1,4 +1,4 @@
-export default function Table({ children, data, config }) {
+export default function Table({ children, data, config, keyFn }) {
   const renderedRows = data.map((row) => {
     const renderedRow = config.map((column) => {
       return (
@@ -8,7 +8,7 @@ export default function Table({ children, data, config }) {
       );
     });
     return (
-      <tr className="border-b" key={row.name}>
+      <tr className="border-b" key={keyFn(row)}>
         {/* <td className="p-3">{row.name}</td>
         <td className="p-3">
           <div className={`p-3 m-2 ${row.color}`}></div>
