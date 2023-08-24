@@ -1,3 +1,9 @@
-export default function Table() {
-  return <div>Table</div>;
+export default function Table({ children, data }) {
+  return (
+    <div>
+      {console.log(data)}
+      <>Table</>
+      {children}
+    </div>
+  );
 }
