@@ -65,7 +65,7 @@ export default function ModalPage() {
         mayor will receive the award at the UNESCO House in Paris, France in
         March next year.[28]
       </p>
-      <Button primary success onClick={handleClick}>
+      <Button primary onClick={handleClick}>
         Modal
       </Button>
       {modalOpen && modal}
