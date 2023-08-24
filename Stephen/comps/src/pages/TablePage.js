@@ -6,9 +6,30 @@ export default function TablePage() {
     { name: "Banana", color: "bg-yellow-400", score: 55 },
     { name: "Cherry", color: "bg-pink-400", score: 65 },
   ];
+
+  const config = [
+    {
+      label: "Name",
+      render: (rowData) => {
+        return rowData.name;
+      },
+    },
+    {
+      label: "Color",
+      render: (rowData) => {
+        return <div className={`p-3 m-2 ${rowData.color}`}></div>;
+      },
+    },
+    {
+      label: "Score",
+      render: (rowData) => {
+        return rowData.score;
+      },
+    },
+  ];
   return (
     <div>
-      <Table className="" data={data}></Table>
+      <Table className="" data={data} config={config}></Table>
     </div>
   );
 }
