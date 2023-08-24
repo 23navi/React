@@ -8,13 +8,28 @@ export default function ModalPage() {
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
+  const handleClose = () => {
+    setModalOpen(false);
+  };
+
+  const actionBar = (
+    <Button onClick={handleClick} primary>
+      Agree
+    </Button>
+  );
+
+  const modal = (
+    <Modal onClose={handleClose} actionBar={actionBar}>
+      <p>I agree to the terms and conditions above.</p>
+    </Modal>
+  );
 
   return (
     <div>
       <Button primary success onClick={handleClick}>
         Modal
       </Button>
-      {modalOpen && <Modal />}
+      {modalOpen && modal}
     </div>
   );
 }
