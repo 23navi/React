@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 export default function Table({ children, data, config, keyFn }) {
   const renderedRows = data.map((row) => {
     const renderedRow = config.map((column) => {
@@ -19,6 +21,9 @@ export default function Table({ children, data, config, keyFn }) {
     );
   });
   const renderColumns = config.map((column) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
+    }
     return <th key={column.label}>{column.label}</th>;
   });
   return (
