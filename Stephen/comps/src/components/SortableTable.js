@@ -1,5 +1,6 @@
 import Table from "./Table";
 import { useState } from "react";
+import { FaSortDown, FaSortUp, FaSort } from "react-icons/fa6";
 export default function SortableTable({
   children,
   data,
@@ -30,10 +31,10 @@ export default function SortableTable({
   }
 
   const headerClick = (label) => {
-    console.log(`${label} was clicked on the header`);
     if (sortBy !== label) {
       setSortBy(label);
       setSortOrder("asc");
+      return;
     }
     if (sortOrder === null) {
       setSortBy(label);
@@ -51,8 +52,14 @@ export default function SortableTable({
     if (column.sortValue) {
       column.header = () => {
         return (
-          <th onClick={() => headerClick(column.label)} className="bg-red-500">
-            {column.label}
+          <th
+            className={"cursor-pointer hover:bg-gray-100"}
+            onClick={() => headerClick(column.label)}
+          >
+            <div className="flex items-center">
+              {getIcons(column.label, sortBy, sortOrder)}
+              {column.label}
+            </div>
           </th>
         );
       };
@@ -60,6 +67,17 @@ export default function SortableTable({
     }
     return column;
   });
+
+  const getIcons = (label, sortBy, sortOrder) => {
+    if (label !== sortBy || sortOrder === null) {
+      return <FaSort />;
+    } else if (sortOrder === "asc") {
+      return <FaSortUp />;
+    } else {
+      return <FaSortDown />;
+    }
+  };
+
   return (
     <Table
       className={className}
