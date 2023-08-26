@@ -1,6 +1,7 @@
 import Table from "./Table";
-import { useState } from "react";
+
 import { FaSortDown, FaSortUp, FaSort } from "react-icons/fa6";
+import useSort from "../hooks/use-sort";
 export default function SortableTable({
   children,
   data,
@@ -8,46 +9,12 @@ export default function SortableTable({
   keyFn,
   className,
 }) {
-  const [sortOrder, setSortOrder] = useState(null); // null, asc,desc
-  const [sortBy, setSortBy] = useState(null); // name,score....
+  const { sortBy, sortOrder, sortedData, headerClick } = useSort({
+    data,
+    config,
+  });
 
-  let sortedData = data;
-
-  if (sortBy && sortOrder) {
-    const { sortValue } = config.find((column) => column.label === sortBy);
-
-    sortedData = [...data];
-
-    sortedData.sort((a, b) => {
-      const valA = sortValue(a);
-      const valB = sortValue(b);
-      const reverseOrder = sortOrder === "desc" ? -1 : 1;
-      if (typeof valA === "string") {
-        return valA.localeCompare(valB) * reverseOrder;
-      } else {
-        return (valA - valB) * reverseOrder;
-      }
-    });
-  }
-
-  const headerClick = (label) => {
-    if (sortBy !== label) {
-      setSortBy(label);
-      setSortOrder("asc");
-      return;
-    }
-    if (sortOrder === null) {
-      setSortBy(label);
-      setSortOrder("asc");
-    } else if (sortOrder === "asc") {
-      setSortBy(label);
-      setSortOrder("desc");
-    } else if (sortOrder === "desc") {
-      setSortBy(null);
-      setSortOrder(null);
-    }
-  };
-
+  // update config
   const newConfig = config.map((column) => {
     if (column.sortValue) {
       column.header = () => {
