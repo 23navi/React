@@ -28,9 +28,6 @@ export default function TablePage() {
       render: (rowData) => {
         return rowData.score;
       },
-      header: () => {
-        return <th className="bg-red-500">Score</th>;
-      },
       sortValue: (rowData) => {
         return rowData.score;
       },
