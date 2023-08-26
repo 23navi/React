@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 
-function useSomething(initialCount = 0) {
+function useCounter(initialCount = 0) {
   const [count, setCount] = useState(initialCount);
 
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   }, [count]);
 
-  const handleClick = () => {
+  const incrementCount = () => {
     setCount(count + 1);
   };
 
-  return { count, handleClick };
+  return { count, incrementCount };
 }
 
 export default function CounterPage({ initialCount }) {
-  const { count, handleClick } = useSomething(initialCount);
+  const { count, incrementCount } = useCounter(initialCount);
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => handleClick()}>Click me</button>
+      <button onClick={() => incrementCount()}>Click me</button>
     </div>
   );
 }
