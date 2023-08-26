@@ -6,23 +6,25 @@ export default function SortableTable({
   keyFn,
   className,
 }) {
-  const headerClick = () => {
-    console.log("headerClick");
+  const headerClick = (label) => {
+    console.log(`${label} was clicked on the header`);
   };
 
-  config.map((column) => {
+  const newConfig = config.map((column) => {
     if (column.sortValue) {
       column.header = () => {
         return (
-          <th onClick={headerClick} className="bg-red-500">
-            Score
+          <th onClick={() => headerClick(column.label)} className="bg-red-500">
+            {column.label}
           </th>
         );
       };
+      return column;
     }
+    return column;
   });
   return (
-    <Table className={className} data={data} config={config} keyFn={keyFn}>
+    <Table className={className} data={data} config={newConfig} keyFn={keyFn}>
       {children}
     </Table>
   );
