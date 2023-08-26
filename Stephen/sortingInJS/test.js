@@ -51,3 +51,19 @@
 // });
 
 // console.log(data);
+
+const data = [
+  { name: "t", age: 3 },
+  { name: "x", age: 12 },
+  { name: "y", age: 23 },
+  { name: "s", age: 6 },
+];
+
+const copyData = structuredClone(data);
+copyData.sort((a, b) => {
+  return a.age - b.age;
+});
+
+copyData[0].age = 1000000;
+
+console.log({ copyData, data });

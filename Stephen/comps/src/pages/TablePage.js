@@ -2,9 +2,9 @@ import SortableTable from "../components/SortableTable";
 export default function TablePage() {
   const data = [
     { name: "Apple", color: "bg-red-400", score: 15 },
-    { name: "Orange", color: "bg-orange-400", score: 20 },
+    { name: "Orange", color: "bg-orange-400", score: 70 },
     { name: "Banana", color: "bg-yellow-400", score: 55 },
-    { name: "Cherry", color: "bg-pink-400", score: 65 },
+    { name: "Cherry", color: "bg-pink-400", score: 25 },
   ];
 
   const config = [
