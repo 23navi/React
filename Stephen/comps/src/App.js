@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import ModalPage from "./pages/ModalPage";
 import TablePage from "./pages/TablePage";
 import CounterPage from "./pages/CounterPage";
+import CounterPageReduce from "./pages/CounterPageReduce";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/counter">
           <CounterPage initialCount={0} />
+        </Route>
+        <Route path="/counterReduce">
+          <CounterPageReduce initialCount={0} />
         </Route>
       </div>
     </div>
