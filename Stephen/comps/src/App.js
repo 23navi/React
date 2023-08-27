@@ -30,10 +30,10 @@ function App() {
           <TablePage />
         </Route>
         <Route path="/counter">
-          <CounterPage initialCount={0} />
+          <CounterPage initialCount={10} />
         </Route>
         <Route path="/counterReduce">
-          <CounterPageReduce initialCount={0} />
+          <CounterPageReduce initialCount={10} />
         </Route>
       </div>
     </div>
