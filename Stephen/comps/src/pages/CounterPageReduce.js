@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import { produce } from "immer";
+
 import Button from "../components/Button";
 import Panel from "../components/Panel";
 
@@ -10,32 +12,25 @@ const VALUE_TO_CHANGE = "value_to_change";
 const reducer = (state, action) => {
   switch (action.type) {
     case INCREMENT_VALUE:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
+      state.count = state.count + 1;
+      return;
+
     case DECREMENT_VALUE:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
+      state.count = state.count - 1;
+      return;
 
     case VALUE_TO_ADD:
-      return {
-        ...state,
-        count: state.count + action.payload.valueToAdd,
-        valueToAdd: 0,
-      };
+      state.count = state.count + action.payload.valueToAdd;
+      state.valueToAdd = 0;
+      return;
+
     case VALUE_TO_CHANGE:
-      return {
-        ...state,
-        valueToAdd: action.payload.valueToAdd,
-      };
+      state.valueToAdd = action.payload.valueToAdd;
+      return;
+
     default:
       console.error("No matching action type");
-      return {
-        state,
-      };
+      return;
   }
 };
 
@@ -43,7 +38,7 @@ function CounterPageReduce({ initialCount }) {
   //   const [count, setCount] = useState(initialCount);
   //   const [valueToAdd, setValueToAdd] = useState(0);
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0,
   });
