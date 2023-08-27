@@ -7,6 +7,7 @@ export default function Sidebar() {
     { label: "Modal", path: "/modal" },
     { label: "Table", path: "/table" },
     { label: "Counter", path: "/counter" },
+    { label: "CounterReduce", path: "/counterReduce" },
   ];
   const renderedList = lists.map((list) => {
     return (
