@@ -1,9 +1,9 @@
 import "./ExpenseItem.css";
 
-function ExpenseItem() {
-  const expenseDate = new Date(2021, 2, 28);
-  const expenseTitle = "Car Insurance";
-  const expenseAmount = 294.67;
+function ExpenseItem({ title, amount, date }) {
+  const expenseDate = date;
+  const expenseTitle = title;
+  const expenseAmount = amount;
 
   return (
     <div className="expense-item">
