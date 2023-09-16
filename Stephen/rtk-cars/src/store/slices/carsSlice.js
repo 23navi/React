@@ -17,8 +17,11 @@ const carsSlice = createSlice({
     removeCar(state, action) {
       state.cars = state.cars.filter((car) => car.id !== action.payload);
     },
+    changeSearchTerm(state, action) {
+      state.searchTerm = action.payload;
+    },
   },
 });
 
-const { addCar, removeCar } = carsSlice.actions;
-export { carsSlice, addCar, removeCar };
+const { addCar, removeCar, changeSearchTerm } = carsSlice.actions;
+export { carsSlice, addCar, removeCar, changeSearchTerm };
