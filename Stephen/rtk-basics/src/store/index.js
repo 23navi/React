@@ -1,8 +1,7 @@
 import { configureStore, createSlice, createAction } from "@reduxjs/toolkit";
 
 const reset = createAction("app/reset");
-console.log(reset());
-console.log(reset);
+
 const songSlice = createSlice({
   name: "song",
   initialState: [],
