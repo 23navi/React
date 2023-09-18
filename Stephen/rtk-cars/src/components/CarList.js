@@ -16,9 +16,17 @@ function CarList() {
   const handleCarDelete = (car) => {
     dispatch(removeCar(car.id));
   };
+
+  const formData = useSelector((state) => state.form);
   const carListRender = carList.map((car) => {
+    // If car.name partial match add new name -> make the carName here as bold.
+    // (How do we get the new car name value??) {state.form.name}
+    const isBold =
+      formData.name &&
+      car.name.toLowerCase().includes(formData.name.toLowerCase());
+
     return (
-      <div key={car.id} className="panel">
+      <div key={car.id} className={`panel ${isBold && "bold"}`}>
         <p>
           {car.name} - ${car.cost}
         </p>
