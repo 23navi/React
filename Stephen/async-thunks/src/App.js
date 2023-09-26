@@ -1,3 +1,3 @@
 export const App = () => {
-  return <h1>App</h1>;
+  return <h1 className="text-sky-400">App</h1>;
 };
