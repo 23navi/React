@@ -1,0 +1,3 @@
+const fetchUsers = {};
+
+export { fetchUsers };
