@@ -2,13 +2,13 @@ import { fetchUsers, addUser } from "../store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
+import Button from "./Button";
 function UsersList() {
   const dispatch = useDispatch();
   const { isLoading, data, error } = useSelector((state) => state.users);
   useEffect(() => {
     console.log("This is running");
     dispatch(fetchUsers());
-    dispatch(addUser());
   }, [dispatch]);
 
   if (isLoading) {
@@ -27,10 +27,20 @@ function UsersList() {
       </div>
     );
   });
+
+  const handleAddUser = (event) => {
+    dispatch(addUser());
+  };
+
   return (
-    <>
+    <div>
+      <div className="flex flex-row justify-between m-3">
+        <h1 className="m-2 text-xl">Users</h1>
+        <Button onClick={handleAddUser}>+ Add Users</Button>
+      </div>
+
       <div>{renderedUsers}</div>
-    </>
+    </div>
   );
 }
 export default UsersList;

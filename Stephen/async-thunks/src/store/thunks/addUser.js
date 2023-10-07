@@ -13,7 +13,7 @@ const addUser = createAsyncThunk("users/add", async () => {
   console.log({ post_response: response });
 
   // Dev network request latency
-  await pause(3000); // 3 sec
+  await pause(500); // 3 sec
   return response.data;
 });
 
