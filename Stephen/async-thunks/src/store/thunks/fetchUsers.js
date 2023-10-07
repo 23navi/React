@@ -10,7 +10,7 @@ const fetchUsers = createAsyncThunk("users/fetch", async () => {
   console.log({ response });
 
   // Dev network request latency
-  await pause(3000); // 3 sec
+  await pause(1000); // 3 sec
   return response.data;
 });
 
