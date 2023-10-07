@@ -9,7 +9,7 @@ function UsersList() {
     dispatch(fetchUsers());
   }, [dispatch]);
   if (isLoading) {
-    return <div>Loading</div>;
+    return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
   }
   if (error) {
     return <div>Error</div>;
@@ -17,7 +17,6 @@ function UsersList() {
   return (
     <>
       <div>{JSON.stringify(data)}</div>
-      <SkeletonLoader times={5}></SkeletonLoader>
     </>
   );
 }
