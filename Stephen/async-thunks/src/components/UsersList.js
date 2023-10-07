@@ -1,4 +1,4 @@
-import { fetchUsers } from "../store";
+import { fetchUsers, addUser } from "../store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
@@ -8,6 +8,7 @@ function UsersList() {
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
+
   if (isLoading) {
     return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
   }
