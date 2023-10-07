@@ -6,7 +6,9 @@ function UsersList() {
   const dispatch = useDispatch();
   const { isLoading, data, error } = useSelector((state) => state.users);
   useEffect(() => {
+    console.log("This is running");
     dispatch(fetchUsers());
+    dispatch(addUser());
   }, [dispatch]);
 
   if (isLoading) {

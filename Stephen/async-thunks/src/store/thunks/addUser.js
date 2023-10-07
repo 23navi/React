@@ -6,12 +6,11 @@ const pause = (duration) => {
     setTimeout(resolve, duration);
   });
 };
-console.log({ name: faker.person.firstName() });
 const addUser = createAsyncThunk("users/add", async () => {
   const response = await axios.post("http://localhost:3005/users", {
     name: faker.person.firstName(),
   });
-  console.log({ response });
+  console.log({ post_response: response });
 
   // Dev network request latency
   await pause(3000); // 3 sec
