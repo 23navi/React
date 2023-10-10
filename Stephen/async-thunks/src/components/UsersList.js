@@ -1,5 +1,5 @@
 import { fetchUsers, addUser } from "../store";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
@@ -10,7 +10,7 @@ function useAsyncThunk(fetchUsers) {
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [errorLoadingUsers, setErrorLoadingUsers] = useState(null);
 
-  const doSomethingAsync = () => {
+  const doSomethingAsync = useCallback(() => {
     setIsLoadingUsers(true);
     dispatch(fetchUsers())
       .unwrap()
@@ -20,7 +20,7 @@ function useAsyncThunk(fetchUsers) {
       .finally(() => {
         setIsLoadingUsers(false);
       });
-  };
+  }, [dispatch, fetchUsers]);
   return [doSomethingAsync, isLoadingUsers, errorLoadingUsers];
 }
 
