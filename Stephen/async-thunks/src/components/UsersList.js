@@ -5,23 +5,23 @@ import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 import { useState } from "react";
 
-function useAsyncThunk(fetchUsers) {
+function useAsyncThunk(thunk) {
   const dispatch = useDispatch();
-  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
-  const [errorLoadingUsers, setErrorLoadingUsers] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState(null);
 
   const doSomethingAsync = useCallback(() => {
-    setIsLoadingUsers(true);
-    dispatch(fetchUsers())
+    setIsLoading(true);
+    dispatch(thunk())
       .unwrap()
       .catch((error) => {
-        setErrorLoadingUsers(error);
+        setErrorLoading(error);
       })
       .finally(() => {
-        setIsLoadingUsers(false);
+        setIsLoading(false);
       });
-  }, [dispatch, fetchUsers]);
-  return [doSomethingAsync, isLoadingUsers, errorLoadingUsers];
+  }, [dispatch, thunk]);
+  return [doSomethingAsync, isLoading, errorLoading];
 }
 
 function UsersList() {
