@@ -1,27 +1,27 @@
 import { fetchUsers, addUser } from "../store";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 import { useState } from "react";
 
-function useAsyncThunk(fetchUsers) {
+function useAsyncThunk(thunk) {
   const dispatch = useDispatch();
-  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
-  const [errorLoadingUsers, setErrorLoadingUsers] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState(null);
 
-  const doSomethingAsync = () => {
-    setIsLoadingUsers(true);
-    dispatch(fetchUsers())
+  const doSomethingAsync = useCallback(() => {
+    setIsLoading(true);
+    dispatch(thunk())
       .unwrap()
       .catch((error) => {
-        setErrorLoadingUsers(error);
+        setErrorLoading(error);
       })
       .finally(() => {
-        setIsLoadingUsers(false);
+        setIsLoading(false);
       });
-  };
-  return [doSomethingAsync, isLoadingUsers, errorLoadingUsers];
+  }, [dispatch, thunk]);
+  return [doSomethingAsync, isLoading, errorLoading];
 }
 
 function UsersList() {
