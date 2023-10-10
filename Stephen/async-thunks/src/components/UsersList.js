@@ -1,14 +1,11 @@
 import { fetchUsers, addUser } from "../store";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
-import { useState } from "react";
 import { useAsyncThunk } from "../hooks/useAsyncThunk";
 
 function UsersList() {
-  const dispatch = useDispatch();
-
   const { data } = useSelector((state) => state.users);
 
   const [doFetchUsers, isLoadingUsers, errorLoadingUsers] =
