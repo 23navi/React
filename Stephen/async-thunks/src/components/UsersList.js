@@ -3,18 +3,32 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
+import { useState } from "react";
 function UsersList() {
   const dispatch = useDispatch();
-  const { isLoading, data, error } = useSelector((state) => state.users);
+
+  const { data } = useSelector((state) => state.users);
+
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
+  const [errorLoadingUsers, setErrorLoadingUsers] = useState(null);
+
   useEffect(() => {
-    console.log("This is running");
-    dispatch(fetchUsers());
+    setIsLoadingUsers(true);
+    dispatch(fetchUsers())
+      .unwrap()
+      .catch((error) => {
+        setErrorLoadingUsers(error);
+      })
+      .finally(() => {
+        setIsLoadingUsers(false);
+      });
   }, [dispatch]);
 
-  if (isLoading) {
+  if (isLoadingUsers) {
     return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
   }
-  if (error) {
+  if (errorLoadingUsers) {
+    console.log({ errorLoadingUsers });
     return <div>Error</div>;
   }
 
