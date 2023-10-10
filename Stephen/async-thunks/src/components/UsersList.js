@@ -5,17 +5,28 @@ import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 function UsersList() {
   const dispatch = useDispatch();
-  const { isLoading, data, error } = useSelector((state) => state.users);
+  const useSelectorRes = useSelector((state) => state.users);
+  console.log({ useSelectorRes });
+  const { isLoading, data, error } = useSelectorRes;
+
   useEffect(() => {
     console.log("This is running");
     dispatch(fetchUsers());
   }, [dispatch]);
 
+  const fetchUsersHandler = () => {
+    dispatch(fetchUsers());
+  };
+
   if (isLoading) {
     return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
   }
   if (error) {
-    return <div>Error</div>;
+    return (
+      <div>
+        Error<button onClick={fetchUsersHandler}>clickMe</button>
+      </div>
+    );
   }
 
   const renderedUsers = data.map((user) => {
