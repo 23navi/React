@@ -29,7 +29,6 @@ function SkeletonLoader({ times, className }) {
         </div>
       );
     });
-  console.log(boxes);
   return <div>{boxes}</div>;
 }
 

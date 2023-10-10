@@ -4,15 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 import { useState } from "react";
-function UsersList() {
+
+function useAsyncThunk(fetchUsers) {
   const dispatch = useDispatch();
-
-  const { data } = useSelector((state) => state.users);
-
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [errorLoadingUsers, setErrorLoadingUsers] = useState(null);
 
-  useEffect(() => {
+  const doSomethingAsync = () => {
     setIsLoadingUsers(true);
     dispatch(fetchUsers())
       .unwrap()
@@ -22,7 +20,24 @@ function UsersList() {
       .finally(() => {
         setIsLoadingUsers(false);
       });
-  }, [dispatch]);
+  };
+  return [doSomethingAsync, isLoadingUsers, errorLoadingUsers];
+}
+
+function UsersList() {
+  const dispatch = useDispatch();
+
+  const { data } = useSelector((state) => state.users);
+
+  const [doSomethingAsync, isLoadingUsers, errorLoadingUsers] =
+    useAsyncThunk(fetchUsers);
+
+  const [isCreatingUser, setIsCreatingUser] = useState(false);
+  const [errorCreatingUser, setErrorCreatingUser] = useState(null);
+
+  useEffect(() => {
+    doSomethingAsync();
+  }, [doSomethingAsync]);
 
   if (isLoadingUsers) {
     return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
@@ -43,7 +58,15 @@ function UsersList() {
   });
 
   const handleAddUser = (event) => {
-    dispatch(addUser());
+    setIsCreatingUser(true);
+    dispatch(addUser())
+      .unwrap()
+      .catch((error) => {
+        setErrorCreatingUser(error);
+      })
+      .finally(() => {
+        setIsCreatingUser(false);
+      });
   };
 
   return (
