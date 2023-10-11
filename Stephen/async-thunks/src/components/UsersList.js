@@ -1,4 +1,4 @@
-import { fetchUsers, addUser } from "../store";
+import { fetchUsers, addUser, deleteUser } from "../store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
@@ -14,9 +14,16 @@ function UsersList() {
   const [doCreateUser, isCreatingUser, errorCreatingUser] =
     useAsyncThunk(addUser);
 
+  const [doDeletUser, isDeletingUser, errorDeletingUser] =
+    useAsyncThunk(deleteUser);
+
   useEffect(() => {
     doFetchUsers();
   }, [doFetchUsers]);
+
+  useEffect(() => {
+    doDeletUser({ id: 1 });
+  }, [doDeletUser]);
 
   let content;
   if (isLoadingUsers) {
