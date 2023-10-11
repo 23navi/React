@@ -9,15 +9,14 @@ export default function UsersListItem({ user }) {
 
   return (
     <div className="mb-2 border rounded">
-      <Button
-        className="cursor-pointer"
-        isLoading
-        onClick={() => doDeletUser(user)}
-      >
-        <GoTrash />
-      </Button>
-
       <div className="flex p-2 justify-between items-center cursor-pointer">
+        <Button
+          className="cursor-pointer"
+          isLoading
+          onClick={() => doDeletUser(user)}
+        >
+          <GoTrash />
+        </Button>
         {user.name}
       </div>
     </div>
