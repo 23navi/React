@@ -40,7 +40,9 @@ function UsersList() {
     <div>
       <div className="flex flex-row justify-between m-3">
         <h1 className="m-2 text-xl">Users</h1>
-        <Button onClick={handleAddUser}>+ Add Users</Button>
+        <Button isLoading={isCreatingUser} onClick={handleAddUser}>
+          + Add Users
+        </Button>
       </div>
 
       <div>{content}</div>
