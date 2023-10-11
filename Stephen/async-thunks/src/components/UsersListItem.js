@@ -12,7 +12,7 @@ export default function UsersListItem({ user }) {
       <div className="flex p-2 justify-between items-center cursor-pointer">
         <Button
           className="cursor-pointer"
-          isLoading
+          isLoading={isDeletingUser}
           onClick={() => doDeletUser(user)}
         >
           <GoTrash />
