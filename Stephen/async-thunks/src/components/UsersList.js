@@ -1,14 +1,11 @@
 import { fetchUsers, addUser } from "../store";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
-import { useState } from "react";
-import { useAsyncThunk } from "../hooks/useAsyncThunk";
+import useAsyncThunk from "../hooks/useAsyncThunk";
 
 function UsersList() {
-  const dispatch = useDispatch();
-
   const { data } = useSelector((state) => state.users);
 
   const [doFetchUsers, isLoadingUsers, errorLoadingUsers] =
@@ -21,23 +18,24 @@ function UsersList() {
     doFetchUsers();
   }, [doFetchUsers]);
 
+  let content;
   if (isLoadingUsers) {
-    return <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>;
-  }
-  if (errorLoadingUsers) {
-    console.log({ errorLoadingUsers });
-    return <div>Error</div>;
-  }
-
-  const renderedUsers = data.map((user) => {
-    return (
-      <div key={user.id} className="mb-2 border rounded">
-        <div className="flex p-2 justify-between items-center cursor-pointer">
-          {user.name}
-        </div>
-      </div>
+    content = (
+      <SkeletonLoader times={5} className="h-10 w-full"></SkeletonLoader>
     );
-  });
+  } else if (errorLoadingUsers) {
+    content = <div>Error</div>;
+  } else {
+    content = data.map((user) => {
+      return (
+        <div key={user.id} className="mb-2 border rounded">
+          <div className="flex p-2 justify-between items-center cursor-pointer">
+            {user.name}
+          </div>
+        </div>
+      );
+    });
+  }
 
   const handleAddUser = (event) => {
     doCreateUser();
@@ -50,7 +48,7 @@ function UsersList() {
         <Button onClick={handleAddUser}>+ Add Users</Button>
       </div>
 
-      <div>{renderedUsers}</div>
+      <div>{content}</div>
     </div>
   );
 }
