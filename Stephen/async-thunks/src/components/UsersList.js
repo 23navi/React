@@ -15,16 +15,12 @@ function UsersList() {
   const [doCreateUser, isCreatingUser, errorCreatingUser] =
     useAsyncThunk(addUser);
 
-  const [doDeletUser, isDeletingUser, errorDeletingUser] =
-    useAsyncThunk(deleteUser);
+
 
   useEffect(() => {
     doFetchUsers();
   }, [doFetchUsers]);
 
-  useEffect(() => {
-    doDeletUser({ id: 1 });
-  }, [doDeletUser]);
 
   let content;
   if (isLoadingUsers) {
