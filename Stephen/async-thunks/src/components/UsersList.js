@@ -1,9 +1,10 @@
-import { fetchUsers, addUser, deleteUser } from "../store";
+import { fetchUsers, addUser } from "../store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 import useAsyncThunk from "../hooks/useAsyncThunk";
+import UsersListItem from "./UsersListItem";
 
 function UsersList() {
   const { data } = useSelector((state) => state.users);
@@ -14,16 +15,9 @@ function UsersList() {
   const [doCreateUser, isCreatingUser, errorCreatingUser] =
     useAsyncThunk(addUser);
 
-  const [doDeletUser, isDeletingUser, errorDeletingUser] =
-    useAsyncThunk(deleteUser);
-
   useEffect(() => {
     doFetchUsers();
   }, [doFetchUsers]);
-
-  useEffect(() => {
-    doDeletUser({ id: 1 });
-  }, [doDeletUser]);
 
   let content;
   if (isLoadingUsers) {
@@ -34,13 +28,7 @@ function UsersList() {
     content = <div>Error</div>;
   } else {
     content = data.map((user) => {
-      return (
-        <div key={user.id} className="mb-2 border rounded">
-          <div className="flex p-2 justify-between items-center cursor-pointer">
-            {user.name}
-          </div>
-        </div>
-      );
+      return <UsersListItem key={user.id} user={user} />;
     });
   }
 
@@ -52,7 +40,9 @@ function UsersList() {
     <div>
       <div className="flex flex-row justify-between m-3">
         <h1 className="m-2 text-xl">Users</h1>
-        <Button onClick={handleAddUser}>+ Add Users</Button>
+        <Button isLoading={isCreatingUser} onClick={handleAddUser}>
+          + Add Users
+        </Button>
       </div>
 
       <div>{content}</div>

@@ -41,7 +41,8 @@ const usersSlice = createSlice({
     // Delete User
     builder.addCase(deleteUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log({ fulfilled_action: action });
+      // Add logic for removing user from data array
+      state.data = state.data.filter((user) => user.id !== action.payload.id);
     });
     builder.addCase(deleteUser.rejected, (state, action) => {
       state.isLoading = false;
@@ -50,7 +51,6 @@ const usersSlice = createSlice({
     });
     builder.addCase(deleteUser.pending, (state, action) => {
       state.isLoading = true;
-      console.log({ pending_action: action });
     });
   },
 });

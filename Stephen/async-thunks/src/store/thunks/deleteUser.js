@@ -6,16 +6,15 @@ const pause = (duration) => {
   });
 };
 const deleteUser = createAsyncThunk("users/delete", async (user) => {
+  console.log({ user });
   const response = await axios.delete(
-    `http://localhost:3005/users/${user.id}}`,
+    `http://localhost:3005/users/${user.id}`,
     {}
   );
   console.log({ delete_response: response }); // =>{}
   // Dev network request latency
   await pause(500); // 3 sec
 
-  // response.data will be {} so we will be sending user directly on successful deletion
-  //     return response.data;
   return user;
 });
 
