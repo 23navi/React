@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import SkeletonLoader from "./SkeletonLoader";
 import Button from "./Button";
 import useAsyncThunk from "../hooks/useAsyncThunk";
+import UsersListItem from "./UsersListItem";
 
 function UsersList() {
   const { data } = useSelector((state) => state.users);
@@ -34,13 +35,7 @@ function UsersList() {
     content = <div>Error</div>;
   } else {
     content = data.map((user) => {
-      return (
-        <div key={user.id} className="mb-2 border rounded">
-          <div className="flex p-2 justify-between items-center cursor-pointer">
-            {user.name}
-          </div>
-        </div>
-      );
+      return <UsersListItem key={user.id} user={user} />;
     });
   }
 
