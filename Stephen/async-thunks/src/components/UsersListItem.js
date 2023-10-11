@@ -1,5 +1,5 @@
-import { GoTrashCan } from "react-icons/go";
-import useAsyncThunk from "../../hooks/useAsyncThunk";
+import { GoTrash } from "react-icons/go";
+import useAsyncThunk from "../hooks/useAsyncThunk";
 import { deleteUser } from "../store";
 import Button from "./Button";
 
@@ -12,9 +12,9 @@ export default function UsersListItem({ user }) {
       <Button
         className="cursor-pointer"
         isLoading
-        onClick={() => doDeletUser(user.id)}
+        onClick={() => doDeletUser(user)}
       >
-        <GoTrashCan />
+        <GoTrash />
       </Button>
 
       <div className="flex p-2 justify-between items-center cursor-pointer">
