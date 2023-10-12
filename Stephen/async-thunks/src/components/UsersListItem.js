@@ -3,6 +3,7 @@ import useAsyncThunk from "../hooks/useAsyncThunk";
 import { deleteUser } from "../store";
 import Button from "./Button";
 import ExpandablePanel from "./ExpandablePanel";
+import AlbumsList from "./AlbumsList";
 
 export default function UsersListItem({ user }) {
   const [doDeletUser, isDeletingUser, errorDeletingUser] =
@@ -21,5 +22,9 @@ export default function UsersListItem({ user }) {
       {user.name}
     </>
   );
-  return <ExpandablePanel header={header}>Panel content</ExpandablePanel>;
+  return (
+    <ExpandablePanel header={header}>
+      <AlbumsList user={user} />
+    </ExpandablePanel>
+  );
 }

@@ -22,9 +22,8 @@ export default function ExpandablePanel({ children, header }) {
           {expanded ? <GoChevronUp /> : <GoChevronDown />}
         </div>
       </div>
-      {expanded && children && children.length > 0 && (
-        <div className="p-2 border-t"> {children}</div>
-      )}
+
+      {expanded && children && <div className="p-2 border-t"> {children}</div>}
     </div>
   );
 }
