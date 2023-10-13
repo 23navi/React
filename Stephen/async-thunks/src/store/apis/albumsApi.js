@@ -20,6 +20,6 @@ const albumsApi = createApi({
   }),
 });
 
-console.log({ albumsApi });
+// console.log({ albumsApi });
 export const { useFetchAlbumsQuery } = albumsApi;
 export { albumsApi };
