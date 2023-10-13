@@ -1,7 +1,6 @@
 import { useFetchAlbumsQuery } from "../store";
-import Button from "./Button";
-import ExpandablePanel from "./ExpandablePanel";
 import SkeletonLoader from "./SkeletonLoader";
+import AlbumsListItem from "./AlbumsListItem";
 
 export default function AlbumsList({ user }) {
   const result = useFetchAlbumsQuery(user);
@@ -12,10 +11,8 @@ export default function AlbumsList({ user }) {
       <SkeletonLoader times={5} className={"h-10 w-100"}></SkeletonLoader>
     );
   } else {
-    console.log(data);
     content = data.map((album) => {
-      const header = <div>{album.title}</div>;
-      return <ExpandablePanel key={album.id} header={header}></ExpandablePanel>;
+      return <AlbumsListItem album={album} key={album.id}></AlbumsListItem>;
     });
   }
 
