@@ -53,7 +53,7 @@ const photosApi = createApi({
 
 // console.log({ albumsApi });
 export const {
-  useFetchAlbumsQuery,
+  useFetchPhotosQuery,
   useAddPhotoMutation,
   useDeletePhotoMutation,
 } = photosApi;

@@ -25,3 +25,9 @@ export {
   useAddAlbumMutation,
   useDeleteAlbumMutation,
 } from "./apis/albumsApi";
+
+export {
+  useFetchPhotosQuery,
+  useAddPhotoMutation,
+  useDeletePhotoMutation,
+} from "./apis/photosApi";
