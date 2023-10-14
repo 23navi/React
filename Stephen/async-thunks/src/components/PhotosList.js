@@ -32,7 +32,7 @@ export function PhotosList({ childern, album }) {
       <div className="flex flex-row justify-between m-3">
         <div>Photos for {album.title}</div>
         <Button isLoading={addPhotoResults.isLoading} onClick={handleAddPhoto}>
-          + Add Album
+          + Add Photo
         </Button>
       </div>
 

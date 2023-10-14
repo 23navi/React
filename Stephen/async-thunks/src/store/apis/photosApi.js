@@ -31,7 +31,9 @@ const photosApi = createApi({
           url: "/photos",
           method: "POST",
           body: {
-            url: "",
+            url: `https://picsum.photos/seed/${Math.floor(
+              Math.random() * 10000
+            )}/600/300`,
             albumId: album.id,
           },
         };
