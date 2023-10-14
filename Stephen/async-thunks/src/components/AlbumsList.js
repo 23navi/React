@@ -1,6 +1,7 @@
 import { useFetchAlbumsQuery } from "../store";
 import SkeletonLoader from "./SkeletonLoader";
 import AlbumsListItem from "./AlbumsListItem";
+import Button from "./Button";
 
 export default function AlbumsList({ user }) {
   const result = useFetchAlbumsQuery(user);
@@ -20,7 +21,11 @@ export default function AlbumsList({ user }) {
 
   return (
     <div>
-      <div>Albums for {user.name}</div>
+      <div className="flex flex-row justify-between m-3">
+        <div>Albums for {user.name}</div>
+        <Button>+ Add Users</Button>
+      </div>
+
       <div>{content}</div>
     </div>
   );
