@@ -10,7 +10,7 @@ export function PhotosList({ childern, album }) {
   const [addPhoto, addPhotoResults] = useAddPhotoMutation();
 
   const photosList = data?.map((photo) => {
-    return <PhotosListItem key={photo.key} photo={photo}></PhotosListItem>;
+    return <PhotosListItem key={photo.id} photo={photo}></PhotosListItem>;
   });
 
   const handleAddPhoto = () => {
