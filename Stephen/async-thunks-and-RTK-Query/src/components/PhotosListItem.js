@@ -5,7 +5,6 @@ import {
 } from "../store";
 import Button from "./Button";
 import { GoTrash } from "react-icons/go";
-import SkeletonLoader from "./SkeletonLoader";
 
 export default function PhotosListItem({ photo }) {
   const [deletePhoto, deletePhotoResults] = useDeletePhotoMutation();
