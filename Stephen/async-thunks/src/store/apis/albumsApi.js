@@ -25,7 +25,7 @@ const albumsApi = createApi({
           method: "POST",
           body: {
             title: faker.commerce.productName(),
-            userId: user.userId,
+            userId: user.id,
           },
         };
       },
