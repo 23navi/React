@@ -8,7 +8,11 @@ const albumsApi = createApi({
     // this top query tell that our hook will be use....Query
     fetchAlbums: builder.query({
       providesTags: (result, error, arg) => {
-        return [{ type: "Album", id: arg.id }];
+        const albumsTags = result.map((album) => ({
+          type: "Album",
+          id: album.id,
+        }));
+        return [{ type: "userAlbum", id: arg.id }, ...albumsTags];
       },
       query: (user) => {
         return {
@@ -23,7 +27,7 @@ const albumsApi = createApi({
     }),
     addAlbum: builder.mutation({
       invalidatesTags: (result, error, arg) => {
-        return [{ type: "Album", id: arg.id }];
+        return [{ type: "userAlbum", id: arg.id }];
       },
       query: (user) => {
         return {
@@ -38,7 +42,7 @@ const albumsApi = createApi({
     }),
     deleteAlbum: builder.mutation({
       invalidatesTags: (result, error, arg) => {
-        return [{ type: "Album", id: arg.userId }];
+        return [{ type: "Album", id: arg.id }];
       },
       query: (album) => {
         return {
