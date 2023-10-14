@@ -5,13 +5,13 @@ const photosApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3005" }),
   endpoints: (builder) => ({
     fetchPhotos: builder.query({
-      // providesTags: (result, error, arg) => {
-      //   const albumsTags = result.map((album) => ({
-      //     type: "Album",
-      //     id: album.id,
-      //   }));
-      //   return [{ type: "userAlbum", id: arg.id }, ...albumsTags];
-      // },
+      providesTags: (result, error, arg) => {
+        const photosTags = result.map((photo) => ({
+          type: "Photo",
+          id: photo.id,
+        }));
+        return [{ type: "photoAlbum", id: arg.id }, ...photosTags];
+      },
       query: (album) => {
         return {
           url: "/photos",
@@ -23,9 +23,9 @@ const photosApi = createApi({
       },
     }),
     addPhoto: builder.mutation({
-      // invalidatesTags: (result, error, arg) => {
-      //   return [{ type: "userAlbum", id: arg.id }];
-      // },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "photoAlbum", id: arg.id }];
+      },
       query: (album) => {
         return {
           url: "/photos",
@@ -40,9 +40,9 @@ const photosApi = createApi({
       },
     }),
     deletePhoto: builder.mutation({
-      // invalidatesTags: (result, error, arg) => {
-      //   return [{ type: "Album", id: arg.id }];
-      // },
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Photo", id: arg.id }];
+      },
       query: (photo) => {
         return {
           url: `/photos/${photo.id}`,
