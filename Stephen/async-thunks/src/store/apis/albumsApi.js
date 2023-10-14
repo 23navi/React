@@ -7,6 +7,9 @@ const albumsApi = createApi({
   endpoints: (builder) => ({
     // this top query tell that our hook will be use....Query
     fetchAlbums: builder.query({
+      providesTags: (result, error, arg) => {
+        return [{ type: "Album", id: arg.id }];
+      },
       query: (user) => {
         return {
           url: "/albums", // this is the path => base+/albums
@@ -19,6 +22,9 @@ const albumsApi = createApi({
       },
     }),
     addAlbum: builder.mutation({
+      invalidatesTags: (result, error, arg) => {
+        return [{ type: "Album", id: arg.id }];
+      },
       query: (user) => {
         return {
           url: "/albums",

@@ -21,10 +21,7 @@ export default function AlbumsList({ user }) {
   }
 
   const handleAddAlbum = () => {
-    console.log({ user });
-    console.log(user.userId);
     addAlbum(user);
-    console.log({ results });
   };
 
   return (
