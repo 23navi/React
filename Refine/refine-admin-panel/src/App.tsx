@@ -14,10 +14,11 @@ import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 
+import { PostList } from "./pages";
+
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <AntdApp>
@@ -32,6 +33,7 @@ function App() {
                   useNewQueryKeys: true,
                   projectId: "vNbkRR-wwCwLh-dJYMq9",
                 }}
+                resources={[{ name: "posts", list: PostList }]}
               >
                 <Routes>
                   <Route index element={<WelcomePage />} />
