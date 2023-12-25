@@ -3,14 +3,14 @@ import { useEffect, useRef } from "react";
 
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import { ThemedTitleV2 } from "@refinedev/mui";
 
 import { CredentialResponse } from "../interfaces/google";
 
+import { yariga } from "assets";
+
 // Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = process.env.REACT_APP_OOGLE_CLIENT_ID ?? "";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
@@ -61,25 +61,20 @@ export const Login: React.FC = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <ThemedTitleV2
-          collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
+        <Box
+          sx={{
+            display: "flex",
             justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-        />
+        >
+          <div>
+            <img src={yariga} alt="Yariga" width={200} />
+          </div>
+        </Box>
 
         <GoogleButton />
-
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
-          Powered by
-          <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
-          />
-          Google
-        </Typography>
       </Box>
     </Container>
   );
