@@ -1,12 +1,13 @@
 import "./App.css";
 import "antd/dist/antd.css";
-import { Button } from "antd";
+
+import Loader from "./components/Loader";
 
 function App() {
   return (
     <>
       <h1>Hello</h1>
-      <Button type="primary">Button</Button>
+      <Loader />
     </>
   );
 }
